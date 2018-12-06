@@ -29,7 +29,7 @@ class CommentFormBuilder extends FormBuilder
         'cols' => 50,
         'class' => 'form-control',
         'placeholder' => 'Commentaire...',
-        'id' => 'test',
+        'id' => 'TintMCE',
         'validators' => [
           new NotNullValidator('Merci de spécifier votre commentaire'),
         ],

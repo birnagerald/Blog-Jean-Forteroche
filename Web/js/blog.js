@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
 	tinymce.init({
-		selector: '#test',
+		selector: '#TintMCE',
 		branding: false,
 	});
 

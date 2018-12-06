@@ -37,7 +37,7 @@ class NewsFormBuilder extends FormBuilder
         'rows' => 8,
         'cols' => 60,
         'class' => 'form-control',
-        'id' => 'test',
+        'id' => 'TintMCE',
         'validators' => [
           new NotNullValidator('Merci de spécifier le contenu de la news'),
         ],
