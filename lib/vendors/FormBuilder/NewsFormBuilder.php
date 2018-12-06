@@ -15,6 +15,7 @@ class NewsFormBuilder extends FormBuilder
         'label' => 'Auteur',
         'name' => 'auteur',
         'maxLength' => 20,
+        'class' => 'form-control',
         'validators' => [
           new MaxLengthValidator('L\'auteur spécifié est trop long (20 caractères maximum)', 20),
           new NotNullValidator('Merci de spécifier l\'auteur de la news'),
@@ -24,6 +25,7 @@ class NewsFormBuilder extends FormBuilder
         'label' => 'Titre',
         'name' => 'titre',
         'maxLength' => 100,
+        'class' => 'form-control',
         'validators' => [
           new MaxLengthValidator('Le titre spécifié est trop long (100 caractères maximum)', 100),
           new NotNullValidator('Merci de spécifier le titre de la news'),
@@ -34,6 +36,8 @@ class NewsFormBuilder extends FormBuilder
         'name' => 'contenu',
         'rows' => 8,
         'cols' => 60,
+        'class' => 'form-control',
+        'id' => 'test',
         'validators' => [
           new NotNullValidator('Merci de spécifier le contenu de la news'),
         ],
