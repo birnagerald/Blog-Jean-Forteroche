@@ -1,5 +1,10 @@
 <h2>Connexion</h2>
 
+<?php if ($user->hasFlash()) {
+    echo '<p style="text-align: center;">', $user->getFlash(), '</p>';
+}
+?>
+
 <form action="" method="post">
   <div class="form-group">
     <label>Pseudo</label>
