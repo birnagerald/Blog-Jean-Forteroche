@@ -37,7 +37,7 @@ class NewsController extends BackController
         if ($pagination > $nombreDePages) {
             $this->app->httpResponse()->redirect404();
         } else {
-            $pagination = (($pagination - 1) * 5);
+            $pagination = (($pagination - 1) * $nombreNews);
 
         }
 
