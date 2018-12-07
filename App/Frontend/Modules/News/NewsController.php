@@ -29,7 +29,7 @@ class NewsController extends BackController
 
         $pagination = $request->getData('pagination');
 
-        if ($pagination == null) {
+        if ($pagination == null || $pagination == 0) {
             $pagination = 1;
         }
         $currentPage = $pagination;
