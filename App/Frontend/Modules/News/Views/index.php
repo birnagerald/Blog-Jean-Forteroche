@@ -8,8 +8,8 @@ foreach ($listeNews as $news) {
 }
 ?>
 
-<nav aria-label="Page navigation example">
-  <ul class="pagination">
+<nav aria-label="Index results pages">
+  <ul class="pagination justify-content-center">
   <?php
 
 if ($currentPage == 1) {
