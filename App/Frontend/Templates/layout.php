@@ -78,12 +78,6 @@
       </div>
     </header>
 
-
-          <!-- <?php if ($user->hasFlash()) {
-    echo '<p style="text-align: center;">', $user->getFlash(), '</p>';
-}
-?> -->
-
       <!-- Main Content -->
       <div class="container">
         <div class="row">
@@ -131,7 +125,7 @@
         </div>
       </div>
     </footer>
-    
+
     <!-- Bootstrap core JavaScript -->
     <script src="/jquery/jquery.min.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>

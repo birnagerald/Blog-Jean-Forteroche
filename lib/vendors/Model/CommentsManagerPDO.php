@@ -77,4 +77,38 @@ class CommentsManagerPDO extends CommentsManager
   {
     $this->dao->exec('UPDATE `comments` SET report = true WHERE id = '.(int) $id);
   }
+
+  public function countReport()
+  {
+    return $this->dao->query('SELECT COUNT(*) FROM comments WHERE report = 1')->fetchColumn();
+  }
+  
+  public function getListCommentsReport($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT id, auteur, contenu, date FROM comments WHERE report = 1 ORDER BY id DESC';
+ 
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+ 
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+ 
+    $listeCommentsReport = $requete->fetchAll();
+ 
+    foreach ($listeCommentsReport as $comment)
+    {
+      $comment->setDate(new \DateTime($comment->date()));
+    }
+ 
+    $requete->closeCursor();
+ 
+    return $listeCommentsReport;
+  }
+
+  public function valid($id)
+  {
+    $this->dao->exec('UPDATE `comments` SET `report`= 0 WHERE id = '.(int) $id);
+  }
 }
