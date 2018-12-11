@@ -26,8 +26,7 @@ foreach ($comments as $comment)
       <a href="admin/comment-update-<?= $comment['id'] ?>.html">Modifier</a><span class="comment_dot">•</span>
       <a href="admin/comment-delete-<?= $comment['id'] ?>.html">Supprimer</a>
     <?php } ?>
-    <span class="comment_dot">•</span><a href="">Signaler</a>
-    <!-- admin/comment-report-<?= $comment['id'] ?>.html -->
+    <span class="comment_dot">•</span><a class="report-button" data-id="<?=$comment['id']?>" href="comment-report-<?= $comment['id'] ?>.html">Signaler</a>
   </legend>
   <p class="comment_p"><?= nl2br(($comment['contenu'])) ?></p>
 </fieldset>

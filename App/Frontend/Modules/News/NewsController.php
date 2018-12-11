@@ -61,6 +61,13 @@ class NewsController extends BackController
         $this->page->addVar('lastPage', $lastPage);
     }
 
+    public function executeReportComment(HTTPRequest $request)
+    {
+        $this->managers->getManagerOf('Comments')->report($request->getData('id'));
+        $this->app->user()->setFlash('Le commentaire a bien été report !');
+        $this->app->httpResponse()->redirect('.');
+    }
+
     public function executeShow(HTTPRequest $request)
     {
         $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
