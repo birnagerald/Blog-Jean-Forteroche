@@ -9,6 +9,11 @@ class HTTPResponse extends ApplicationComponent
   {
     header($header);
   }
+
+  public function addHTTPCode($code)
+  {
+    http_response_code($code);
+  }
  
   public function redirect($location)
   {
