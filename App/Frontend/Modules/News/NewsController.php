@@ -64,14 +64,17 @@ class NewsController extends BackController
     public function executeReportComment(HTTPRequest $request)
     {
         $this->managers->getManagerOf('Comments')->report($request->getData('id'));
+        $commentInfo = $this->managers->getManagerOf('Comments')->get($request->getData('id'));
+        $commentInfo['news'];
+        
 
         $this->app->user()->setFlash('Le commentaire a bien été report !');
-        $news = $this->managers->getManagerOf('News')->getUnique($request->getData('id'));
+        
 
         if ($this->app->user()->isAuthenticated()) {
             $this->app->httpResponse()->redirect('/admin/');
         } else {
-            $this->app->httpResponse()->redirect('.');
+            $this->app->httpResponse()->redirect('/news-'.$commentInfo['news'].'.html');
         }
 
     }

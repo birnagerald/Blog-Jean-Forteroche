@@ -131,9 +131,10 @@
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Custom scripts for this template -->
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script> -->
     <script src="/js/clean-blog.min.js"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script src="/js/blog.js"></script>
-
+    
   </body>
 </html>

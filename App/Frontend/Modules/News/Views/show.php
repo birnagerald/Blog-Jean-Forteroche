@@ -28,7 +28,7 @@ foreach ($comments as $comment)
     <?php } ?>
     <span class="comment_dot">•</span><a class="report-button" data-id="<?=$comment['id']?>" href="comment-report-<?= $comment['id'] ?>.html">Signaler</a>
   </legend>
-  <p class="comment_p"><?= nl2br(($comment['contenu'])) ?></p>
+  <p class="comment_p" id="<?=$comment['id']?>"><?= nl2br(($comment['contenu'])) ?></p>
 </fieldset>
 <hr textalign="center" width="100%" color="black" size="1.5">
 <?php
