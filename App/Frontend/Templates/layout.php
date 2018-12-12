@@ -22,6 +22,8 @@
     <!-- Custom styles for this template -->
     <link href="/css/clean-blog.min.css" rel="stylesheet">
 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" rel="stylesheet" />
+
 
   </head>
 
@@ -135,6 +137,7 @@
     <script src="/js/clean-blog.min.js"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script src="/js/blog.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     
   </body>
 </html>

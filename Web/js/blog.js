@@ -21,17 +21,85 @@ document.addEventListener('DOMContentLoaded', () => {
 			type: 'PUT', // Le type de la requête HTTP.
 			success: function (data, textStatus, xhr) {
 				if (xhr.status == 201) {
-					$("#" + id).append('<p style="color: #ff0000"><strong>Commentaire signalé avec succès !<strong></p>');
+					toastr.options = {
+						"closeButton": false,
+						"debug": false,
+						"newestOnTop": false,
+						"progressBar": false,
+						"positionClass": "toast-bottom-right",
+						"preventDuplicates": true,
+						"onclick": null,
+						"showDuration": "100",
+						"hideDuration": "100",
+						"timeOut": "2900",
+						"extendedTimeOut": "1000",
+						"showEasing": "linear",
+						"hideEasing": "linear",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut"
+					}
+					Command: toastr["success"]("Commentaire signalé !", "Succès")
 				}
 
-			}, // données renvoyées
+			},
 			complete: function (xhr, textStatus) {
 				if (xhr.status == 429) {
-					$("#" + id).append('<p style="color: #ff0000"><strong>Ce commentaire a déjà été signalé !<strong></p>');
+					toastr.options = {
+						"closeButton": false,
+						"debug": false,
+						"newestOnTop": false,
+						"progressBar": false,
+						"positionClass": "toast-bottom-right",
+						"preventDuplicates": true,
+						"onclick": null,
+						"showDuration": "100",
+						"hideDuration": "100",
+						"timeOut": "2900",
+						"extendedTimeOut": "1000",
+						"showEasing": "linear",
+						"hideEasing": "linear",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut"
+					}
+					Command: toastr["warning"]("Ce commentaire a déjà été signalé !", "Attention")
 				} else if (xhr.status == 400) {
-					$("#" + id).append('<p style="color: #ff0000"><strong>Erreur lors de l\'éxécution de la requête<strong></p>');
+					toastr.options = {
+						"closeButton": false,
+						"debug": false,
+						"newestOnTop": false,
+						"progressBar": false,
+						"positionClass": "toast-bottom-right",
+						"preventDuplicates": true,
+						"onclick": null,
+						"showDuration": "100",
+						"hideDuration": "100",
+						"timeOut": "2900",
+						"extendedTimeOut": "1000",
+						"showEasing": "linear",
+						"hideEasing": "linear",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut"
+					}
+					Command: toastr["error"]("Le commentaire n'est pas valide ou n'existe pas !", "Erreur")
 				} else if (xhr.status == 503) {
-					$("#" + id).append('<p style="color: #ff0000"><strong>Service indisponible<strong></p>');
+					toastr.options = {
+						"closeButton": false,
+						"debug": false,
+						"newestOnTop": false,
+						"progressBar": false,
+						"positionClass": "toast-bottom-right",
+						"preventDuplicates": true,
+						"onclick": null,
+						"showDuration": "100",
+						"hideDuration": "100",
+						"timeOut": "2900",
+						"extendedTimeOut": "1000",
+						"showEasing": "linear",
+						"hideEasing": "linear",
+						"showMethod": "fadeIn",
+						"hideMethod": "fadeOut"
+					}
+					Command: toastr["error"]("Le service est indisponible", "Erreur")
 				}
 			}
 
