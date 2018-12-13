@@ -1,7 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
 	tinymce.init({
 		selector: '#TintMCE',
-		branding: false,
+		formats: {
+			bold: {
+				inline: 'b',
+				'classes': 'bold'
+			},
+			italic: {
+				inline: 'i',
+				'classes': 'italic'
+			}
+
+		}
 	});
 
 	$(document).on('focusin', function (e) {
