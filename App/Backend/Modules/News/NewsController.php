@@ -43,20 +43,36 @@ class NewsController extends BackController
         $this->page->addVar('nombreNews', $manager->count());
 
         $listeCommentsReport = $managerComments->getListCommentsReport();
-        $managerComments = $managerComments->countReport();
+        $nbrCommentsReport = $managerComments->countReport();
+
+        $listeComments = $managerComments->getListAllComments();
+
+        $nbrComments = $managerComments->CountComments();
 
         foreach ($listeCommentsReport as $comment) {
             if (strlen($comment->contenu()) > 25) {
-                // var_dump($comment['contenu']);
-                // die;
+                
                 $debut = substr($comment->contenu(), 0, 25);
                 $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
 
                 $comment->setContenu($debut);
             }
         }
+
+        foreach ($listeComments as $comment) {
+            if (strlen($comment->contenu()) > 25) {
+                
+                $debut = substr($comment->contenu(), 0, 25);
+                $debut = substr($debut, 0, strrpos($debut, ' ')) . '...';
+
+                $comment->setContenu($debut);
+            }
+        }
+        $this->page->addVar('listeComments', $listeComments);
         $this->page->addVar('listeCommentsReport', $listeCommentsReport);
-        $this->page->addvar('nombreCommentsReport', $managerComments);
+        $this->page->addvar('nombreCommentsReport', $nbrCommentsReport);
+        $this->page->addvar('nbrComments', $nbrComments);
+
     }
 
     public function executeValidReport(HTTPRequest $request)

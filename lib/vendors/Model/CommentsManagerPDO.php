@@ -85,9 +85,19 @@ class CommentsManagerPDO extends CommentsManager
         return $this->dao->query('SELECT COUNT(*) FROM comments WHERE report = 1')->fetchColumn();
     }
 
+    public function countComments()
+    {
+        return $this->dao->query('SELECT COUNT(*) FROM comments')->fetchColumn();
+    }
+
     public function getListCommentsReport($debut = -1, $limite = -1)
     {
-        $sql = 'SELECT id, auteur, contenu, date FROM comments WHERE report = 1 ORDER BY id DESC';
+        $sql = 'SELECT news.titre titre_news, comments.id, comments.auteur, comments.contenu, comments.news, comments.date
+        FROM comments
+        INNER JOIN news
+        ON comments.news = news.id
+        WHERE report = 1
+        ORDER BY id DESC';
 
         if ($debut != -1 || $limite != -1) {
             $sql .= ' LIMIT ' . (int) $limite . ' OFFSET ' . (int) $debut;
@@ -111,5 +121,33 @@ class CommentsManagerPDO extends CommentsManager
     {
         $this->dao->exec('UPDATE `comments` SET `report`= 0 WHERE id = ' . (int) $id);
     }
+
+    public function getListAllComments($debut = -1, $limite = -1)
+  {
+    $sql = 'SELECT news.titre titre_news, comments.id, comments.auteur, comments.contenu, comments.news, comments.date
+        FROM comments
+        INNER JOIN news
+        ON comments.news = news.id
+        ORDER BY id DESC';
+ 
+    if ($debut != -1 || $limite != -1)
+    {
+      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+    }
+ 
+    $requete = $this->dao->query($sql);
+    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+ 
+    $listeComments = $requete->fetchAll();
+ 
+    foreach ($listeComments as $comment)
+    {
+        $comment->setDate(new \DateTime($comment->date()));
+    }
+ 
+    $requete->closeCursor();
+ 
+    return $listeComments;
+  }
 
 }
