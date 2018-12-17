@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 	$(".report-button").click((e) => {
 
-		event.preventDefault()
+		e.preventDefault()
 
 		let id = $(e.currentTarget).data("id");
 

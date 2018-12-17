@@ -14,6 +14,9 @@
     <!-- Bootstrap core CSS -->
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/favicon.png" />
+
     <!-- Custom fonts for this template -->
     <link href="/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
