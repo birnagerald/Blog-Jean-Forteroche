@@ -19,7 +19,7 @@ if ($currentPage == 1) {
     <?php
 } else {
     ?>
-    <li class="page-item"><a class="page-link" href="http://jeanforteroche/p-<?=($currentPage - 1)?>">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=($currentPage - 1)?>">Previous</a></li>
     <?php
 }
 
@@ -27,11 +27,11 @@ foreach ($paginationLien as $page) {
 
     if ($currentPage == $page) {
         ?>
-    <li class="page-item active"><a class="page-link" href="http://jeanforteroche/p-<?=$page?>"><?=$page?></a></li>
+    <li class="page-item active"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=$page?>"><?=$page?></a></li>
     <?php
 }   else {
         ?>
-    <li class="page-item"><a class="page-link" href="http://jeanforteroche/p-<?=$page?>"><?=$page?></a></li>
+    <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=$page?>"><?=$page?></a></li>
 
   <?php
 
@@ -46,7 +46,7 @@ if ($currentPage == $lastPage) {
   <?php
 } else {
     ?>
-  <li class="page-item"><a class="page-link" href="http://jeanforteroche/p-<?=$currentPage + 1?>">Next</a></li>
+  <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=$currentPage + 1?>">Next</a></li>
   <?php
 }
 ?>
