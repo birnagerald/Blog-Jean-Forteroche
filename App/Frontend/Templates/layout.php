@@ -137,7 +137,7 @@
     <script src="/js/clean-blog.min.js"></script>
     <script src='https://cloud.tinymce.com/stable/tinymce.min.js'></script>
     <script src="/js/blog.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
     
   </body>
 </html>
