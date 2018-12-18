@@ -22,7 +22,7 @@ class RegisterController extends BackController
                 $this->managers->getManagerOf('Users')->add($users);
 
                 $this->app->user()->setFlash('Vous êtes maintenant inscrit !');
-                $this->app->httpResponse()->redirect('.');
+                
             }
             else{
                 $this->app->user()->setFlash('Il faut remplir les champs !');
