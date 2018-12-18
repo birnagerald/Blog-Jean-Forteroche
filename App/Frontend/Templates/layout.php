@@ -55,6 +55,9 @@
               <a class="nav-link" href="/admin/news-insert.html">Ajouter une news</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link" href="/about.html">À Propos</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link" href="/admin/logout.html">Déconnexion</a>
             </li>
             <?php } else {?>
@@ -128,7 +131,7 @@
                 </a>
               </li>
             </ul>
-            <p class="copyright text-muted">Copyright &copy; Birna Gérald 2018</p>
+            <p class="copyright text-muted">Copyright &copy; Birna Gérald 2018 | Code & Design : Birna Gérald</p>
           </div>
         </div>
       </div>
