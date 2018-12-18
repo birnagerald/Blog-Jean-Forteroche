@@ -8,7 +8,7 @@
     <meta name="author" content="Birna Gérald">
 
     <title>
-      <?=isset($title) ? $title : 'Mon super site'?>
+      <?=isset($title) ? $title : 'Jean Forteroche'?>
     </title>
 
     <!-- Bootstrap core CSS -->
@@ -58,8 +58,11 @@
               <a class="nav-link" href="/admin/logout.html">Déconnexion</a>
             </li>
             <?php } else {?>
-              <li class="nav-item">
+            <li class="nav-item">
               <a class="nav-link" href="/">Accueil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/about.html">À Propos</a>
             </li>
             <?php }
 ;?>
@@ -69,14 +72,14 @@
     </nav>
 
     <!-- Page Header -->
-    <header class="masthead" style="background-image: url('/images/home-bg.jpg')">
+    <header class="masthead" style="background-image: url(<?=isset($bg) ? $bg : '/images/home-bg.jpg'?>)">
       <div class="overlay"></div>
       <div class="container">
         <div class="row">
           <div class="col-lg-8 col-md-10 mx-auto">
             <div class="site-heading">
-              <h1>Billet simple pour l'Alaska</h1>
-              <span class="subheading">Un roman de Jean Forteroche !</span>
+              <h1><?=isset($mainTitle) ? $mainTitle : 'Billet simple pour l\'Alaska'?></h1>
+              <span class="subheading"><?=isset($secondTitle) ? $secondTitle : 'Un roman de Jean Forteroche !'?></span>
             </div>
           </div>
         </div>
@@ -86,7 +89,7 @@
       <!-- Main Content -->
       <div class="container">
         <div class="row">
-          <div class="col-lg-10 col-md-10 mx-auto">
+          <div class="col-lg-12 col-md-10 mx-auto">
            <div class="post-preview">
               <?=$content?>
               <hr>

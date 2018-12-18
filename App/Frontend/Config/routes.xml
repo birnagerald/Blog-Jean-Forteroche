@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <routes>
   <route url="/" module="News" action="index" />
-   <route url="/p-([0-9]+)" module="News" action="index" vars="pagination" />
+  <route url="/p-([0-9]+)" module="News" action="index" vars="pagination" />
   <route url="/news-([0-9]+)\.html" module="News" action="show" vars="id"/>
   <route url="/commenter-([0-9]+)\.html" module="News" action="insertComment" vars="news" />
   <route url="/register.html" module="Register" action="index" />
   <route url="/comment-report-([0-9]+)\.html" module="News" action="reportComment" vars="id" />
+  <route url="/about.html" module="About" action="index" />
 </routes>
