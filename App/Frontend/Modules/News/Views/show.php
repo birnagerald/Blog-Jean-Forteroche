@@ -7,6 +7,7 @@
 <?php } ?>
 <hr textalign="center" width="100%" color="grey" size="1"> 
 <h2>Commentaires</h2>
+
 <br>
 <?php
 if (empty($comments))
@@ -15,7 +16,9 @@ if (empty($comments))
 <p>Aucun commentaire n'a encore été posté. Soyez le premier à en laisser un !</p>
 <?php
 }
-
+?>
+<div class="container-comments">
+<?php
 foreach ($comments as $comment)
 {
 ?>
@@ -28,11 +31,19 @@ foreach ($comments as $comment)
     <?php } ?>
     <span class="comment_dot">•</span><a class="report-button" data-id="<?=$comment['id']?>">Signaler</a>
   </legend>
-  <p class="comment_p" id="<?=$comment['id']?>"><?= nl2br(($comment['contenu'])) ?></p>
+  <p class="comment_p" id="<?=$comment['id']?>"><?= htmlspecialchars(nl2br(($comment['contenu']))) ?></p>
 </fieldset>
 <hr textalign="center" width="100%" color="black" size="1.5">
+
 <?php
 }
 ?>
-
-<p><a class="add-comment" href="commenter-<?= $news['id'] ?>.html">Ajouter un commentaire</a></p>
+</div>
+<h2>Ajouter un commentaire</h2>
+<br>
+<form action="" method="post">
+  <div class="form-group">
+    <?=$form?>
+    <input type="submit" value="Commenter" class="btn btn-primary add-comment" data-id="<?=$news['id']?>" />
+  </div>
+</form>

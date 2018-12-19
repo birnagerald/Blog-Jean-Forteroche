@@ -5,7 +5,7 @@ use \Entity\Comment;
 
 class CommentsManagerPDO extends CommentsManager
 {
-    protected function add(Comment $comment)
+    public function add(Comment $comment)
     {
         $q = $this->dao->prepare('INSERT INTO comments SET news = :news, auteur = :auteur, contenu = :contenu, date = NOW()');
 
@@ -34,7 +34,7 @@ class CommentsManagerPDO extends CommentsManager
             throw new \InvalidArgumentException('L\'identifiant de la news passé doit être un nombre entier valide');
         }
 
-        $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE news = :news');
+        $q = $this->dao->prepare('SELECT id, news, auteur, contenu, date FROM comments WHERE news = :news ORDER BY id DESC');
         $q->bindValue(':news', $news, \PDO::PARAM_INT);
         $q->execute();
 
@@ -123,31 +123,41 @@ class CommentsManagerPDO extends CommentsManager
     }
 
     public function getListAllComments($debut = -1, $limite = -1)
-  {
-    $sql = 'SELECT news.titre titre_news, comments.id, comments.auteur, comments.contenu, comments.news, comments.date
+    {
+        $sql = 'SELECT news.titre titre_news, comments.id, comments.auteur, comments.contenu, comments.news, comments.date
         FROM comments
         INNER JOIN news
         ON comments.news = news.id
         ORDER BY id DESC';
- 
-    if ($debut != -1 || $limite != -1)
-    {
-      $sql .= ' LIMIT '.(int) $limite.' OFFSET '.(int) $debut;
+
+        if ($debut != -1 || $limite != -1) {
+            $sql .= ' LIMIT ' . (int) $limite . ' OFFSET ' . (int) $debut;
+        }
+
+        $requete = $this->dao->query($sql);
+        $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
+
+        $listeComments = $requete->fetchAll();
+
+        foreach ($listeComments as $comment) {
+            $comment->setDate(new \DateTime($comment->date()));
+        }
+
+        $requete->closeCursor();
+
+        return $listeComments;
     }
- 
-    $requete = $this->dao->query($sql);
-    $requete->setFetchMode(\PDO::FETCH_CLASS | \PDO::FETCH_PROPS_LATE, '\Entity\Comment');
- 
-    $listeComments = $requete->fetchAll();
- 
-    foreach ($listeComments as $comment)
+
+    public function getlastComment()
     {
-        $comment->setDate(new \DateTime($comment->date()));
+        $sql = 'SELECT * FROM comments ORDER BY ID DESC LIMIT 1';
+        $requete = $this->dao->query($sql);
+
+        $commentData = $requete->fetchAll();
+        $data['result'] = $commentData;
+
+        return json_encode($data);
+
     }
- 
-    $requete->closeCursor();
- 
-    return $listeComments;
-  }
 
 }

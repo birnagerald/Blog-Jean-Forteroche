@@ -6,7 +6,7 @@
   </thead>
 <?php
 foreach ($listeNews as $news) {
-    echo '<tr><td>', $news['auteur'], '</td><td>', $news['titre'], '</td><td>le ', $news['dateAjout']->format('d/m/Y à H\hi'), '</td><td>', ($news['dateAjout'] == $news['dateModif'] ? '-' : 'le ' . $news['dateModif']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
+    echo '<tr><td>', htmlspecialchars($news['auteur']), '</td><td>', htmlspecialchars($news['titre']), '</td><td>le ', $news['dateAjout']->format('d/m/Y à H\hi'), '</td><td>', ($news['dateAjout'] == $news['dateModif'] ? '-' : 'le ' . $news['dateModif']->format('d/m/Y à H\hi')), '</td><td><a href="news-update-', $news['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="news-delete-', $news['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a></td></tr>', "\n";
 }
 ?>
 </table>
@@ -22,7 +22,7 @@ foreach ($listeNews as $news) {
   </thead>
 <?php
 foreach ($listeComments as $comment) {
-  echo '<tr><td>', $comment['auteur'], '</td><td>', ($comment->titre_news), '</td><td>', ($comment['contenu']), '</td><td><a href="comment-update-', $comment['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="comment-delete-', $comment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" />', "\n";
+  echo '<tr><td>', htmlspecialchars($comment['auteur']), '</td><td>', htmlspecialchars(($comment->titre_news)), '</td><td>', htmlspecialchars(($comment['contenu'])), '</td><td><a href="comment-update-', $comment['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="comment-delete-', $comment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" />', "\n";
 }
 ?>
 </table>
@@ -43,7 +43,7 @@ foreach ($listeComments as $comment) {
 <?php
 foreach ($listeCommentsReport as $comment) {
 
-    echo '<tr><td>', $comment['auteur'], '</td><td>', ($comment->titre_news), '</td><td>', ($comment['contenu']), '</td><td><a href="comment-update-', $comment['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="comment-delete-', $comment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a> <a href="comment-valid-', $comment['id'], '.html"><img src="/images/valid.png" alt="Valider" /></a></td></tr>', "\n";
+    echo '<tr><td>', htmlspecialchars($comment['auteur']), '</td><td>', htmlspecialchars(($comment->titre_news)), '</td><td>', htmlspecialchars(($comment['contenu'])), '</td><td><a href="comment-update-', $comment['id'], '.html"><img src="/images/update.png" alt="Modifier" /></a> <a href="comment-delete-', $comment['id'], '.html"><img src="/images/delete.png" alt="Supprimer" /></a> <a href="comment-valid-', $comment['id'], '.html"><img src="/images/valid.png" alt="Valider" /></a></td></tr>', "\n";
 }
 ?>
 </table>

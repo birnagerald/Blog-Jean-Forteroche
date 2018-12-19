@@ -4,7 +4,6 @@ namespace App\Frontend\Modules\News;
 use \Entity\Comment;
 use \FormBuilder\CommentFormBuilder;
 use \Fram\BackController;
-use \Fram\FormHandler;
 use \Fram\HTTPRequest;
 
 class NewsController extends BackController
@@ -89,36 +88,40 @@ class NewsController extends BackController
         $this->page->addVar('title', $news->titre());
         $this->page->addVar('news', $news);
         $this->page->addVar('comments', $this->managers->getManagerOf('Comments')->getListOf($news->id()));
-    }
 
-    public function executeInsertComment(HTTPRequest $request)
-    {
-        // Si le formulaire a été envoyé.
-        if ($request->method() == 'POST') {
-            $comment = new Comment([
-                'news' => $request->getData('news'),
-                'auteur' => $request->postData('auteur'),
-                'contenu' => $request->postData('contenu'),
-            ]);
-        } else {
-            $comment = new Comment;
-        }
+        $comment = new Comment;
 
         $formBuilder = new CommentFormBuilder($comment);
         $formBuilder->build();
 
         $form = $formBuilder->form();
 
-        $formHandler = new FormHandler($form, $this->managers->getManagerOf('Comments'), $request);
+        $this->page->addVar('form', $form->createView());
 
-        if ($formHandler->process()) {
-            $this->app->user()->setFlash('Le commentaire a bien été ajouté, merci !');
+    }
 
-            $this->app->httpResponse()->redirect('news-' . $request->getData('news') . '.html');
+    public function executeInsertComment(HTTPRequest $request)
+    {
+        // Si le formulaire a été envoyé.
+        if ($request->method() == 'POST') {
+            if (empty($request->postData('auteur')) || empty($request->postData('contenu'))) {
+                $this->app->httpResponse()->addHTTPCode(400);
+            } else {
+                $comment = new Comment([
+                    'news' => $request->getData('news'),
+                    'auteur' => $request->postData('auteur'),
+                    'contenu' => $request->postData('contenu'),
+                ]);
+                $this->managers->getManagerOf('Comments')->add($comment);
+                $lastComment = $this->managers->getManagerOf('Comments')->getLastComment();
+                $this->app->httpResponse()->redirect('news-' . $request->getData('news') . '.html');
+
+            }
+
+        } else {
+
+            $this->app->httpResponse()->addHTTPCode(503);
         }
 
-        $this->page->addVar('comment', $comment);
-        $this->page->addVar('form', $form->createView());
-        $this->page->addVar('title', 'Ajout d\'un commentaire');
     }
 }
