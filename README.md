@@ -1,5 +1,5 @@
 # Blog-Jean-Forteroche
 
-# Structure MVC PHP
+# Structure MVC PHP POO
 
 # Application Frontend et Backend
