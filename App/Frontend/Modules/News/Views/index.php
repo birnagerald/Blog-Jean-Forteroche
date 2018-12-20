@@ -15,11 +15,11 @@ foreach ($listeNews as $news) {
 
 if ($currentPage == 1) {
     ?>
-    <li class="page-item disabled"><a class="page-link" href="#">Previous</a></li>
+    <li class="page-item disabled"><a class="page-link" href="#">Précédent</a></li>
     <?php
 } else {
     ?>
-    <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=($currentPage - 1)?>">Previous</a></li>
+    <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=($currentPage - 1)?>">Précédent</a></li>
     <?php
 }
 
@@ -42,11 +42,11 @@ foreach ($paginationLien as $page) {
 if ($currentPage == $lastPage) {
     ?>
 
-  <li class="page-item disabled"><a class="page-link" href="#">Next</a></li>
+  <li class="page-item disabled"><a class="page-link" href="#">Suivant</a></li>
   <?php
 } else {
     ?>
-  <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=$currentPage + 1?>">Next</a></li>
+  <li class="page-item"><a class="page-link" href="http://<?=$_SERVER['HTTP_HOST']?>/p-<?=$currentPage + 1?>">Suivant</a></li>
   <?php
 }
 ?>
