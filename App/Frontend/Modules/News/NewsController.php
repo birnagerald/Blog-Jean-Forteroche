@@ -104,7 +104,7 @@ class NewsController extends BackController
     {
         // Si le formulaire a été envoyé.
         if ($request->method() == 'POST') {
-            if (empty($request->postData('auteur')) || empty($request->postData('contenu'))) {
+            if (empty(trim($request->postData('auteur'))) || empty(trim($request->postData('contenu')))) {
                 $this->app->httpResponse()->addHTTPCode(400);
             } else {
                 $comment = new Comment([
